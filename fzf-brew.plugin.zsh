@@ -20,13 +20,13 @@ function _fzf_complete_brew() {
     local arguments=$@
 
     if [[ $arguments == 'brew install --cask'* ]]; then
-        _fzf_complete -m --preview $FB_FORMULA_PREVIEW --bind $FB_FORMULA_BIND -- "$@" < <(brew casks)
+        _fzf_complete -m --preview="${FB_FORMULA_PREVIEW}" --bind="${FB_FORMULA_BIND}" -- "$@" < <(brew casks)
     elif [[ $arguments == 'brew uninstall --cask'* ]]; then
-        _fzf_complete -m --preview $FB_FORMULA_PREVIEW --bind $FB_FORMULA_BIND -- "$@" < <(brew list --cask)
+        _fzf_complete -m --preview="${FB_FORMULA_PREVIEW}" --bind="${FB_FORMULA_BIND}" -- "$@" < <(brew list --cask)
     elif [[ $arguments == 'brew install'* ]]; then
-        _fzf_complete -m --preview $FB_FORMULA_PREVIEW --bind $FB_FORMULA_BIND -- "$@" < <(brew formulae)
+        _fzf_complete -m --preview="${FB_FORMULA_PREVIEW}" --bind="${FB_FORMULA_BIND}" -- "$@" < <(brew formulae)
     elif [[ $arguments == 'brew uninstall'* ]]; then
-        _fzf_complete -m --preview $FB_FORMULA_PREVIEW --bind $FB_FORMULA_BIND -- "$@" < <(brew leaves)
+        _fzf_complete -m --preview="${FB_FORMULA_PREVIEW}" --bind="${FB_FORMULA_BIND}" -- "$@" < <(brew leaves)
     else
         eval "zle ${fzf_default_completion:-expand-or-complete}"
     fi
@@ -34,7 +34,7 @@ function _fzf_complete_brew() {
 
 # functions
 function fuzzy_brew_install() {
-    local inst=$(brew formulae | fzf --query="$1" -m --preview $FB_FORMULA_PREVIEW --bind $FB_FORMULA_BIND)
+    local inst=$(brew formulae | fzf --query="$1" -m --preview="${FB_FORMULA_PREVIEW}" --bind="${FB_FORMULA_BIND}")
 
     if [[ $inst ]]; then
         for prog in $(echo $inst); do; brew install $prog; done;
@@ -42,7 +42,7 @@ function fuzzy_brew_install() {
 }
 
 function fuzzy_brew_uninstall() {
-    local uninst=$(brew leaves | fzf --query="$1" -m --preview $FB_FORMULA_PREVIEW --bind $FB_FORMULA_BIND)
+    local uninst=$(brew leaves | fzf --query="$1" -m --preview="${FB_FORMULA_PREVIEW}" --bind="${FB_FORMULA_BIND}")
 
     if [[ $uninst ]]; then
         for prog in $(echo $uninst);
