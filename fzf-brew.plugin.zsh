@@ -51,7 +51,7 @@ function fuzzy_brew_uninstall() {
 }
 
 function fuzzy_cask_install() {
-    local inst=$(brew casks | fzf --query="$1" -m --preview $FB_CASK_PREVIEW --bind $FB_CASK_BIND)
+    local inst=$(brew casks | fzf --query="$1" -m --preview="${FB_CASK_PREVIEW}" --bind="${FB_CASK_BIND}")
 
     if [[ $inst ]]; then
         for prog in $(echo $inst); do; brew install --cask $prog; done;
@@ -59,7 +59,7 @@ function fuzzy_cask_install() {
 }
 
 function fuzzy_cask_uninstall() {
-    local inst=$(brew list --cask | fzf --query="$1" -m --preview $FB_CASK_PREVIEW --bind $FB_CASK_BIND)
+    local inst=$(brew list --cask | fzf --query="$1" -m --preview="${FB_CASK_PREVIEW}" --bind="${FB_CASK_BIND}")
 
     if [[ $inst ]]; then
         for prog in $(echo $inst); do; brew uninstall --cask $prog; done;

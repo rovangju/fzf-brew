@@ -38,16 +38,6 @@ You can visit the homepage of the formula or cask using `ctrl-space`.
 
 ### Install this plugin
 
-#### `ohmyzsh`
-
-1. `cd ~/.oh-my-zsh/custom/plugins`
-2. `git clone git@github.com:thirteen37/fzf-brew.git fzf-brew`
-3. Add `fzf-brew` to your `.zshrc` plugin list `plugins=(... fzf-brew)`
-
-#### `zgen` or `zgenom`
-
-Add `zgenom load thirteen37/fzf-brew` or `zgenom load thirteen37/fzf-brew` to your `.zshrc`
-
 #### `antigen`
 
-Add `antigen bundle thirteen37/fzf-brew` to your `.zshrc`
+Add `antigen bundle rovangju/fzf-brew` to your `.zshrc`
